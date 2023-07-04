@@ -40,8 +40,10 @@ public:
         }
         return newTask;
     }
+    //getTask declaration
+    Task* getTask(const std::string& taskName);
 
-    // Add more methods as needed to access and manipulate tasks in the list
+    // Add methods here to access and manipulate tasks in the list
 };
 
 #endif //LINKED_LIST_H

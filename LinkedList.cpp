@@ -11,3 +11,15 @@ LinkedList::~LinkedList() {
     }
 }
 
+    //getTask method. Uses Sequential Search Algorithm to search through LinkedList
+Task* LinkedList::getTask(const std::string& taskName) {
+    Node* currentNode = head;
+    while(currentNode != nullptr) {
+        if(currentNode->task->getName() == taskName) {
+            return currentNode->task;
+        }
+        currentNode = currentNode->next;
+    }
+    return nullptr; // Return nullptr if task not found
+}
+
