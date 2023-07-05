@@ -43,7 +43,8 @@ public:
     //getTask declaration
     Task* getTask(const std::string& taskName);
 
-    // Add methods here to access and manipulate tasks in the list
+    void displayAllTasks();
+
 };
 
 #endif //LINKED_LIST_H

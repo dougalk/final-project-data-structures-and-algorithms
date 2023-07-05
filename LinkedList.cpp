@@ -1,4 +1,5 @@
 #include "LinkedList.h"
+#include <iostream>
 
 LinkedList::~LinkedList() {
     Node* currentNode = head;
@@ -21,5 +22,20 @@ Task* LinkedList::getTask(const std::string& taskName) {
         currentNode = currentNode->next;
     }
     return nullptr; // Return nullptr if task not found
+}
+
+//displayAllTasks method. Uses linear traversal
+void LinkedList::displayAllTasks() {
+    Node* currentNode = head;
+    while(currentNode != nullptr) {
+        std::cout << "Task Name: " << currentNode->task->getName() << std::endl;
+        std::cout << "\tTask Description: " << currentNode->task->getDescription() << std::endl;
+        std::cout << "\tTask Due Date: " << currentNode->task->getDueDate() << std::endl;
+        std::cout << "\tTask Priority: " << currentNode->task->getPriority() << std::endl;
+        currentNode = currentNode->next;
+        if (currentNode != nullptr) {
+            std::cout << "----------------------------------------" << std::endl;
+        }
+    }
 }
 
