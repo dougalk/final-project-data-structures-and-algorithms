@@ -1,12 +1,14 @@
 #include "LinkedList.h"
+#include "Graph.h"
 #include <iostream>
 
 int main() 
 {
     LinkedList TaskList;
+    Graph TaskGraph;
 
     while (true) {
-        std::cout << "\nPress 1 to add a Task, 2 to add a SubTask, 3 to display all tasks, 4 to search for a subtask, or any other key to quit: ";
+        std::cout << "\nPress 1 to add a Task, 2 to add a SubTask, 3 to display all tasks, 4 to search for a subtask, 5 to add a dependency between tasks, or any other key to quit: ";
         int choice;
         std::cin >> choice;
 
@@ -16,13 +18,35 @@ int main()
             std::cout << "\nEnter task name: ";
             std::cin.ignore();
             std::getline(std::cin, taskName);
-            std::cout << "[Optional] Enter task description: ";
+            std::cout << "Enter task description: ";
             std::getline(std::cin, taskDescription);
-            std::cout << "[Optional] Enter task due date (YYYY-MM-DD): ";
+            std::cout << "Enter task due date (YYYY-MM-DD): ";
             std::getline(std::cin, taskDueDate);
             std::cout << "Enter task priority (integer): ";
             std::cin >> taskPriority;
-            TaskList.addTask(taskName, taskDescription, taskDueDate, taskPriority);
+            Task* newTask = TaskList.addTask(taskName, taskDescription, taskDueDate, taskPriority);
+            // After adding the task to the TaskList, also add it to the TaskGraph
+            TaskGraph.addTask(newTask);
+
+            // Prompt the user to add a dependency
+            std::cout << "Would you like to add a dependency for this task? (y/n): ";
+            char addDependency;
+            std::cin >> addDependency;
+            if (addDependency == 'y' || addDependency == 'Y') {
+                std::string taskName2;
+                std::cout << "Enter name of task it depends on: ";
+                std::cin.ignore();
+                std::getline(std::cin, taskName2);
+
+                Task* task2 = TaskList.getTask(taskName2);
+
+                if (task2) {
+                    TaskGraph.addDependency(newTask, task2);
+                    std::cout << "Dependency added.\n";
+                } else {
+                    std::cout << "Task not found. Try again with a valid task name.\n";
+                }
+        }
         }
         else if (choice == 2) {
 
@@ -75,6 +99,24 @@ int main()
                 }
             } else {
                 std::cout << "Parent task not found. Try again with valid task name.";
+            }
+        }
+        else if (choice == 5) {
+            std::string taskName1, taskName2;
+            std::cout << "Enter name of dependent task: ";
+            std::cin.ignore();
+            std::getline(std::cin, taskName1);
+            std::cout << "Enter name of task it depends on: ";
+            std::getline(std::cin, taskName2);
+
+            Task* task1 = TaskList.getTask(taskName1);
+            Task* task2 = TaskList.getTask(taskName2);
+
+            if (task1 && task2) {
+                TaskGraph.addDependency(task1, task2);
+                std::cout << "Dependency added.\n";
+            } else {
+                std::cout << "One or both tasks not found. Try again with valid task names.\n";
             }
         }
         else {
