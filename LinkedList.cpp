@@ -24,7 +24,7 @@ Task* LinkedList::getTask(const std::string& taskName) {
     return nullptr; // Return nullptr if task not found
 }
 
-//displayAllTasks method. Uses linear traversal
+//displayAllTasks method. Uses sequential traversal
 void LinkedList::displayAllTasks() {
     Node* currentNode = head;
     while(currentNode != nullptr) {
