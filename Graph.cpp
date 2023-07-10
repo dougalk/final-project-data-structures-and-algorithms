@@ -32,3 +32,36 @@ bool Graph::isDependent(Task* task1, Task* task2) {
     }
     return false;
 }
+
+void Graph::displayAllTasksDependenciesDFS() {
+    for (const auto& task_vecPair : adjacencyList) {
+        Task* task = task_vecPair.first;
+        std::set<Task*> dependencies;
+        
+        std::stack<Task*> stack;
+        std::set<Task*> visited;
+        stack.push(task);
+
+        while (!stack.empty()) {
+            Task* current = stack.top();
+            stack.pop();
+
+            if (!visited.count(current)) {
+                visited.insert(current);
+                for (auto& dependeeTask : adjacencyList[current]) {
+                    stack.push(dependeeTask);
+                    dependencies.insert(dependeeTask);
+                }
+            }
+        }
+
+        std::cout << task->getName() << " depends on: ";
+        for (const auto& dependeeTask : dependencies) {
+            if (dependeeTask != task) {
+                std::cout << dependeeTask->getName() << ", ";
+            }
+        }
+        std::cout << std::endl;
+    }
+}
+

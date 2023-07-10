@@ -3,6 +3,8 @@
 
 #include <map>
 #include <vector>
+#include <set>
+#include <stack>
 #include "Task.h"
 
 class Graph {
@@ -12,6 +14,7 @@ public:
     void addDependency(Task* task1, Task* task2);
     void displayDependencies(Task* task);
     bool isDependent(Task* task1, Task* task2);
+    void displayAllTasksDependenciesDFS();
 
 private:
     //std::map<Task*, std::vector<Task*>> adjacencyList;

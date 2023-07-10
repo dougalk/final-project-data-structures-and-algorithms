@@ -8,7 +8,7 @@ int main()
     Graph TaskGraph;
 
     while (true) {
-        std::cout << "\nPress 1 to add a Task, 2 to add a SubTask, 3 to display all tasks, 4 to search for a subtask, 5 to add a dependency between tasks, or any other key to quit: ";
+        std::cout << "\nPress 1 to add a Task, 2 to add a SubTask, 3 to display all tasks, 4 to search for a subtask, 5 to add a dependency between tasks, 6 to display all dependencies, or any other key to quit: ";
         int choice;
         std::cin >> choice;
 
@@ -118,6 +118,9 @@ int main()
             } else {
                 std::cout << "One or both tasks not found. Try again with valid task names.\n";
             }
+        }
+        else if (choice == 6) {
+            TaskGraph.displayAllTasksDependenciesDFS();
         }
         else {
             break;

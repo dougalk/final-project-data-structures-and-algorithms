@@ -21,7 +21,7 @@ public:
     //Destructor
     ~LinkedList();
 
-    // Add a task at the end of the linked list
+    // Add a task at the start of the linked list
     Task* addTask(const std::string& name, 
                   const std::string& description,
                   const std::string& dueDate, 
@@ -29,17 +29,16 @@ public:
         Task* newTask = new Task(name, description, dueDate, priority);
         Node* newNode = new Node(newTask);
 
-        if (head == nullptr) {
-            head = newNode;
-        } else {
-            Node* tempNode = head;
-            while (tempNode->next) {
-                tempNode = tempNode->next;
-            }
-            tempNode->next = newNode;
-        }
+        // If the list is not empty, set the new node's next pointer to the current head
+        if (head != nullptr) {
+            newNode->next = head;
+        } 
+        // Set the head to the new node
+        head = newNode;
+
         return newTask;
     }
+
     //getTask declaration
     Task* getTask(const std::string& taskName);
 
