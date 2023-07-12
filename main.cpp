@@ -49,14 +49,12 @@ int main()
         }
         }
         else if (choice == 2) {
-
             //Ask for name of parent task
             std::string parentTaskName, subtaskName, subtaskDescription, subtaskDueDate;
             int subtaskPriority;
             std::cout << "Enter name of parent task: ";
             std::cin.ignore();
             std::getline(std::cin, parentTaskName);
-
             //check if parent task exists first, to avoid user wasting time inputting details
             Task* parentTask = TaskList.getTask(parentTaskName);
             if (parentTask) {
@@ -126,6 +124,5 @@ int main()
             break;
         }
     }
-
     return 0;
 }

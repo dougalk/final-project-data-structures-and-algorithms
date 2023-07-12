@@ -17,7 +17,6 @@ public:
     void displayAllTasksDependenciesDFS();
 
 private:
-    //std::map<Task*, std::vector<Task*>> adjacencyList;
     std::map<Task*, std::vector<Task*> > adjacencyList;
 };
 

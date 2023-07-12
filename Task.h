@@ -18,7 +18,7 @@ public:
          const std::string& dueDate, int priority);
     
     // Method to add subtask
-    //In the addSubTask method, a new Task is created and its address is added to the subTasks vector, thus adding a new child node to the tree.
+    //new Task is created and its address is added to the subTasks vector, thus adding a new child node to the tree.
     Task* addSubTask(const std::string& name, 
                      const std::string& description,
                      const std::string& dueDate, 
@@ -35,8 +35,7 @@ public:
 
     // Destructor
     ~Task();
-
-    // ... Other necessary methods ...
+    
 };
 
 #endif //TASK_H

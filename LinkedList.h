@@ -7,20 +7,17 @@ class Node {
 public:
     Task* task;
     Node* next;
-
     Node(Task* task): task(task), next(nullptr) {}
 };
 
 class LinkedList {
 private:
     Node* head;
-
 public:
     //Constructor
     LinkedList(): head(nullptr) {}
     //Destructor
     ~LinkedList();
-
     // Add a task at the start of the linked list
     Task* addTask(const std::string& name, 
                   const std::string& description,

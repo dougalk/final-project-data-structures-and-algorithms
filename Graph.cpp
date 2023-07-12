@@ -3,13 +3,8 @@
 
 Graph::Graph() {}
 
-//the adjacencyList member represents the adjacency list of the graph: keys are tasks and values are vectors containing all tasks that the key task depends on.
-
-
 void Graph::addTask(Task* task) {
     adjacencyList[task];  // Adds the task to the adjacency list 
-                          // but since it has no dependencies yet,
-                          // its corresponding vector is empty.
 }
 
 void Graph::addDependency(Task* task1, Task* task2) {
@@ -37,11 +32,9 @@ void Graph::displayAllTasksDependenciesDFS() {
     for (const auto& task_vecPair : adjacencyList) {
         Task* task = task_vecPair.first;
         std::set<Task*> dependencies;
-        
         std::stack<Task*> stack;
         std::set<Task*> visited;
         stack.push(task);
-
         while (!stack.empty()) {
             Task* current = stack.top();
             stack.pop();
@@ -54,7 +47,6 @@ void Graph::displayAllTasksDependenciesDFS() {
                 }
             }
         }
-
         std::cout << task->getName() << " depends on: ";
         for (const auto& dependeeTask : dependencies) {
             if (dependeeTask != task) {

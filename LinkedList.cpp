@@ -6,13 +6,12 @@ LinkedList::~LinkedList() {
     while (currentNode) {
         Node* nodeToBeDeleted = currentNode;
         currentNode = currentNode->next;
-
         delete nodeToBeDeleted->task;
         delete nodeToBeDeleted;
     }
 }
 
-    //getTask method. Uses Sequential Search Algorithm to search through LinkedList
+    //getTask method
 Task* LinkedList::getTask(const std::string& taskName) {
     Node* currentNode = head;
     while(currentNode != nullptr) {
@@ -34,7 +33,7 @@ void LinkedList::displayAllTasks() {
         std::cout << "\tTask Priority: " << currentNode->task->getPriority() << std::endl;
         currentNode = currentNode->next;
         if (currentNode != nullptr) {
-            std::cout << "----------------------------------------" << std::endl;
+            std::cout << "------------------------------------------" << std::endl;
         }
     }
 }
